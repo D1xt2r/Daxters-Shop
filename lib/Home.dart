@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:a/chat/chat.dart';
+import 'package:a/detail/DetailScreen.dart';
 import 'package:a/models/products.dart';
 import 'package:a/profile/profile.dart';
 import 'package:a/setting/settings.dart';
@@ -147,51 +148,59 @@ class ProductP extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 18, top: 15),
-      child: SizedBox(
-        width: 120,
-        child: Column(
-          children: [
-            AspectRatio(
-              aspectRatio: 1.02,
-              child: Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(15),
+      child: FlatButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DetailScreen()),
+          );
+        },
+        child: SizedBox(
+          width: 120,
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 1.02,
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Image.asset(product.images[0]),
                 ),
-                child: Image.asset(product.images[0]),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 3),
-              child: Text(
-                product.title,
-                style: TextStyle(color: Colors.black),
-                maxLines: 2,
+              Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Text(
+                  product.title,
+                  style: TextStyle(color: Colors.black),
+                  maxLines: 2,
+                ),
               ),
-            ),
-            Row(
-              children: [
-                Text("\₦${product.price}",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blue)),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 30, left: 15),
-                  child: Container(
-                      width: 5,
-                      height: 5,
-                      decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
-                          shape: BoxShape.circle),
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.favorite, color: Colors.red))),
-                )
-              ],
-            )
-          ],
+              Row(
+                children: [
+                  Text("\₦${product.price}",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.blue)),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30, left: 15),
+                    child: Container(
+                        width: 5,
+                        height: 5,
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.1),
+                            shape: BoxShape.circle),
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.favorite, color: Colors.red))),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
